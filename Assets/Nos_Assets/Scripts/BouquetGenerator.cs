@@ -25,7 +25,7 @@ public class BouquetGenerator : MonoBehaviour
 
                 }
 
-                Instantiate(flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(40), this.transform);
+                Instantiate(flower.flowerPrefab, transform.position + GetRandomOffset(0.05f), GetRandomAngle(40), this.transform);
             }
         }
     }
@@ -49,7 +49,7 @@ public class BouquetGenerator : MonoBehaviour
 
     private Vector3 GetRandomOffset(float maxOffset)
     {
-        Vector3 offset = new Vector3(Random.Range(-maxOffset, maxOffset), 0, Random.Range(-maxOffset, maxOffset));
+        Vector3 offset = new Vector3(Random.Range(-maxOffset, maxOffset), Random.Range(-maxOffset, maxOffset)*2, Random.Range(-maxOffset, maxOffset));
         return offset;
     }
 
@@ -62,7 +62,7 @@ public class BouquetGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            flowers[1].quantity += 1;
+            flowers[0].quantity += 1;
             GenerateBouqet();
         }
     }
