@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BouquetGenerator : MonoBehaviour
 {
-    [SerializeField] List<FlowerData> flowers = new List<FlowerData>();
+    public List<FlowerData> flowers = new List<FlowerData>();
     int angle;
 
     public void GenerateBouqet()
@@ -23,7 +23,7 @@ public class BouquetGenerator : MonoBehaviour
 
                 }
 
-                Instantiate(flowerType.flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(25), this.transform);
+                Instantiate(flowerType.flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(40), this.transform);
             }
         }
     }
@@ -72,4 +72,10 @@ public class FlowerData
 {
     public FlowerScriptableObject flower;
     public int quantity;
+
+    public FlowerData(FlowerScriptableObject flower, int quantity)
+    {
+        this.flower = flower;
+        this.quantity = quantity;
+    }
 }
