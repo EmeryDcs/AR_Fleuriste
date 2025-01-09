@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3111192870981216601}
   - component: {fileID: 971828679091635190}
+  - component: {fileID: 8677549872961734502}
   m_Layer: 0
   m_Name: Vase
   m_TagString: Untagged
@@ -51,6 +52,18 @@ MonoBehaviour:
   - {fileID: 8927074112284413766}
   boutonGauche: {fileID: 7047516898359531829}
   boutonDroite: {fileID: 6287137304229792180}
+--- !u!114 &8677549872961734502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868756367476323501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc360a90a7bbd641854c68c2484cbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2913447572984634321
 GameObject:
   m_ObjectHideFlags: 0
