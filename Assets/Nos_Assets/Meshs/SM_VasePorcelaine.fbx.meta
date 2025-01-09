@@ -7,10 +7,15 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: b99a50ef165aaf148961032ce9083ffb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: ciqi_low_bj1_defaultMat
     second: {fileID: 2100000, guid: f0dd2ae31d8b0c140bdb18241be58c54, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
