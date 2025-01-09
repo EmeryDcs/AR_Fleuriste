@@ -1,27 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class FlowerSelector : MonoBehaviour
 {
     public FlowerScriptableObject flowerToDisplay;
-
-    [SerializeField] Transform flowerPos;
     [SerializeField] int quantity;
 
+    [SerializeField] Transform flowerPos;
     private BouquetGenerator bouquet;
-
-    [Header("UI Config")]
-    public Text quantityText;
+    public TMP_Text quantityText;
 
     private void Awake()
     {
+        // Recherche le BouquetGenerator
         bouquet = FindAnyObjectByType<BouquetGenerator>();
 
-        if (flowerToDisplay)
+        if (bouquet == null)
         {
-            Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
-
+            Debug.LogError("BouquetGenerator non trouvé.");
+            return;
         }
+
+        // Vérifie si la fleur en question existe déjà dans le bouquet
+        if (flowerToDisplay != null)
+        {
+            FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
+
+            if (existingFlower != null)
+            {
+                // Met à jour la quantité existante
+                quantity = existingFlower.quantity;
+            }
+
+            // Instancie l'aperçu de la fleur dans l'interface
+            Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
+        }
+
+        // Met à jour l'interface pour refléter la quantité actuelle
         quantityText.text = quantity.ToString();
     }
 
@@ -30,6 +47,8 @@ public class FlowerSelector : MonoBehaviour
     {
         quantity += 1;
         quantityText.text = quantity.ToString();
+        ValidateSelection();
+
     }
 
     public void DecreaseQuantity()
@@ -38,12 +57,14 @@ public class FlowerSelector : MonoBehaviour
         if(quantity < 0)
             quantity=0;
         quantityText.text = quantity.ToString();
+        ValidateSelection();
     }
 
     public void ResetQuantity()
     {
         quantity = 0;
         quantityText.text = quantity.ToString();
+        ValidateSelection();
     }
 
     public void ValidateSelection()
@@ -79,8 +100,6 @@ public class FlowerSelector : MonoBehaviour
             bouquet.flowers.Add(new FlowerData(flowerToDisplay, quantity));
         }
 
-        //Reinitialise la quantité à ajouter;
-        ResetQuantity();
         // Recharge le bouquet
         bouquet.GenerateBouqet();
     }
