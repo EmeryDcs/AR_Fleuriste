@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabd8837a48f8e458e650c18fb357b3, type: 3}
+  m_Name: Astrante
+  m_EditorClassIdentifier: 
+  prefabName: Astrante
+  flowerPrefab: {fileID: 5171614624225224063, guid: 50fc360b290d02a489a4da2a2a052e12,
+    type: 3}
+  description: 
