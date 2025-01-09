@@ -3,29 +3,27 @@ using UnityEngine;
 
 public class BouquetGenerator : MonoBehaviour
 {
-    [SerializeField] List<Flower> flowers = new List<Flower>();
-    [SerializeField] List<GameObject> folliage = new List<GameObject>();
-
+    [SerializeField] List<FlowerData> flowers = new List<FlowerData>();
     int angle;
-
 
     public void GenerateBouqet()
     {
         CleanBouquet();
-        foreach (Flower flower in flowers)
+        foreach (FlowerData flowerType in flowers)
         {
-            for (int i = 0; i < flower.quantity; i++)
+            for (int i = 0; i < flowerType.quantity; i++)
             {
                 int thresold = 2;
 
                 if (i > thresold)
                 {
+                    thresold += 3;
                     angle += 3;
                     thresold = (int)(thresold + Mathf.Round(1.3f));
 
                 }
 
-                Instantiate(flower.flowerPrefab, transform.position + GetRandomOffset(0.05f), GetRandomAngle(40), this.transform);
+                Instantiate(flowerType.flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(25), this.transform);
             }
         }
     }
@@ -70,9 +68,8 @@ public class BouquetGenerator : MonoBehaviour
 
 
 [System.Serializable]
-public class Flower
+public class FlowerData
 {
-    public string name;
-    public GameObject flowerPrefab;
+    public FlowerScriptableObject flower;
     public int quantity;
 }

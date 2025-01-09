@@ -407,11 +407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowers:
-  - name: Rose
-    flowerPrefab: {fileID: 5171614624225224063, guid: 38cf5d1d778234a4f9c895342069902b,
-      type: 3}
-    quantity: 3
-  folliage: []
+  - flower: {fileID: 11400000, guid: 90f66fbb5bf380d48aa9b140432ff0b3, type: 2}
+    quantity: 5
 --- !u!4 &1014893071
 Transform:
   m_ObjectHideFlags: 0

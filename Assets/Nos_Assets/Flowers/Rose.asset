@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabd8837a48f8e458e650c18fb357b3, type: 3}
+  m_Name: Rose
+  m_EditorClassIdentifier: 
+  prefabName: Rose
+  flowerPrefab: {fileID: 5171614624225224063, guid: 38cf5d1d778234a4f9c895342069902b,
+    type: 3}
+  description: "Son parfum subtil et envo\xFBtant m\xEAle des notes fruit\xE9es et
+    florales, rappelant l\xE9g\xE8rement la fraise et la pivoine."
