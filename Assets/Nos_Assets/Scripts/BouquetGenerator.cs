@@ -8,20 +8,31 @@ public class BouquetGenerator : MonoBehaviour
     public FlowerDataList listFlowers;
 	int angle;
 
-    public void GenerateBouqet()
+    [Header("Bouquet Settings")]
+    public float baseRadius = 0.1f;  // Rayon de base pour le placement des fleurs
+    public float heightVariance = 0.05f; // Variation verticale pour simuler un effet de bouquet
+    public float randomOffset = 0.02f; // Offset aléatoire pour chaque fleur
+
+    public void GenerateBouquet()
     {
         CleanBouquet();
-		foreach (FlowerData flowerType in flowers)
+
+        foreach (FlowerData flowerType in flowers)
         {
+            if (flowerType.quantity <= 0) continue;
+
+            // Calcule le rayon spécifique pour ce type de fleur
+            float flowerRadius = baseRadius + flowerType.quantity * 0.0001f;
+
             for (int i = 0; i < flowerType.quantity; i++)
             {
-                int thresold = 2;
+                // Calcule une position circulaire autour du point central
+                float angle = (360f / flowerType.quantity) * i; // Divise uniformément les fleurs en cercle
+                Vector3 position = GetPositionOnCircle(angle, flowerRadius);
 
-                if (i > thresold)
-                {
-                    thresold += 3;
-                    angle += 3;
-                    thresold = (int)(thresold + Mathf.Round(1.3f));
+                // Applique une variation aléatoire à la hauteur et à la position
+                position.y += Random.Range(-heightVariance, heightVariance);
+                position += GetRandomOffset(randomOffset);
 
                 }
 
@@ -34,6 +45,16 @@ public class BouquetGenerator : MonoBehaviour
         listFlowers.flowers = flowers;
 		saveBouquet.SaveFlowers(listFlowers);
 	}
+                // Instancie la fleur avec une rotation aléatoire
+                Instantiate(
+                    flowerType.flower.flowerPrefab,
+                    transform.position + position,
+                    GetRandomAngle(25),
+                    this.transform
+                );
+            }
+        }
+    }
 
     public void CleanBouquet()
     {
@@ -47,15 +68,27 @@ public class BouquetGenerator : MonoBehaviour
 
     private Quaternion GetRandomAngle(int maxAngle)
     {
-        Quaternion rot = Quaternion.Euler(Random.Range(-maxAngle, maxAngle), Random.Range(0, 359), Random.Range(-maxAngle, maxAngle) );
-
-        return rot;
+        return Quaternion.Euler(
+            Random.Range(-maxAngle, maxAngle),
+            Random.Range(0, 359),
+            Random.Range(-maxAngle, maxAngle)
+        );
     }
 
     private Vector3 GetRandomOffset(float maxOffset)
     {
-        Vector3 offset = new Vector3(Random.Range(-maxOffset, maxOffset), Random.Range(-maxOffset, maxOffset)*2, Random.Range(-maxOffset, maxOffset));
-        return offset;
+        return new Vector3(
+            Random.Range(-maxOffset, maxOffset),
+            0,
+            Random.Range(-maxOffset, maxOffset)
+        );
+    }
+
+    private Vector3 GetPositionOnCircle(float angle, float radius)
+    {
+        // Convertit l'angle en radians et calcule la position sur un cercle
+        float rad = angle * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Cos(rad) * radius, 0, Mathf.Sin(rad) * radius);
     }
 
     private void Awake()
@@ -86,14 +119,18 @@ public class BouquetGenerator : MonoBehaviour
 }
 
 
+
+
 [System.Serializable]
 public class FlowerData
 {
+    public string name;
     public FlowerScriptableObject flower;
     public int quantity;
 
     public FlowerData(FlowerScriptableObject flower, int quantity)
     {
+        this.name = flower.name;
         this.flower = flower;
         this.quantity = quantity;
     }

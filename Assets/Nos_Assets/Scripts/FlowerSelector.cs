@@ -83,24 +83,32 @@ public class FlowerSelector : MonoBehaviour
             return;
         }
 
-        if (quantity == 0)
-            return;
-
         // Cherche une fleur existante dans le bouquet
         FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
 
-        if (existingFlower != null)
+        if (quantity == 0)
         {
-            // Si la fleur existe déjà, met à jour la quantité
-            existingFlower.quantity += quantity;
+            // Si la quantité est 0, supprime la fleur du bouquet
+            if (existingFlower != null)
+            {
+                bouquet.flowers.Remove(existingFlower);
+            }
         }
         else
         {
-            // Sinon, ajoute une nouvelle fleur
-            bouquet.flowers.Add(new FlowerData(flowerToDisplay, quantity));
+            // Si la fleur existe déjà, met à jour la quantité
+            if (existingFlower != null)
+            {
+                existingFlower.quantity = quantity;
+            }
+            else
+            {
+                // Sinon, ajoute une nouvelle fleur
+                bouquet.flowers.Add(new FlowerData(flowerToDisplay, quantity));
+            }
         }
 
         // Recharge le bouquet
-        bouquet.GenerateBouqet();
+        bouquet.GenerateBouquet();
     }
 }
