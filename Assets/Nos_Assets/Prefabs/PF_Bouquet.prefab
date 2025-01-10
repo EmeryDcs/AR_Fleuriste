@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowers: []
+  baseRadius: 0.001
+  heightVariance: 0.005
+  randomOffset: 0.002

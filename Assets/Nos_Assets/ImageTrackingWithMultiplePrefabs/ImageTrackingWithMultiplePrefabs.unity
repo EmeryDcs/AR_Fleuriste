@@ -636,6 +636,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ARF XR Origin Set Up
       objectReference: {fileID: 0}
+    - target: {fileID: 7043833920548368154, guid: 8f2c1ffdafd49a943ac79dc0ff480220,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -666,7 +671,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099623058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6d5323815f004189af1fb658b6c9369, type: 3}
   m_Name: 
@@ -722,34 +727,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
         type: 3}
-      propertyPath: baseRadius
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
-        type: 3}
-      propertyPath: randomOffset
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
-        type: 3}
       propertyPath: heightVariance
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
-        type: 3}
-      propertyPath: flowers.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
-        type: 3}
-      propertyPath: flowers.Array.data[0].flower
-      value: 
-      objectReference: {fileID: 11400000, guid: 90f66fbb5bf380d48aa9b140432ff0b3,
-        type: 2}
-    - target: {fileID: 5831119207814773694, guid: eeef438d6e1255246b7dc64ee0128a2f,
-        type: 3}
-      propertyPath: flowers.Array.data[0].quantity
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7047947240443992277, guid: eeef438d6e1255246b7dc64ee0128a2f,
         type: 3}

@@ -65,7 +65,7 @@ public class BouquetGenerator : MonoBehaviour
     {
         return new Vector3(
             Random.Range(-maxOffset, maxOffset),
-            Random.Range(-maxOffset, maxOffset),
+            0,
             Random.Range(-maxOffset, maxOffset)
         );
     }
