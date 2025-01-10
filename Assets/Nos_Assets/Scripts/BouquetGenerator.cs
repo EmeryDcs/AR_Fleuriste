@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BouquetGenerator : MonoBehaviour
 {
@@ -34,27 +35,21 @@ public class BouquetGenerator : MonoBehaviour
                 position.y += Random.Range(-heightVariance, heightVariance);
                 position += GetRandomOffset(randomOffset);
 
-                }
-
-                Instantiate(flowerType.flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(40), this.transform);
-            }
-        }
+				// Instancie la fleur avec une rotation aléatoire
+				Instantiate(
+					flowerType.flower.flowerPrefab,
+					transform.position + position,
+					GetRandomAngle(25),
+					this.transform
+				);
+			}
+		}
 
 		//Save bouquet
 		AR_SaveBouquet saveBouquet = FindAnyObjectByType<AR_SaveBouquet>();
-        listFlowers.flowers = flowers;
+		listFlowers.flowers = flowers;
 		saveBouquet.SaveFlowers(listFlowers);
 	}
-                // Instancie la fleur avec une rotation aléatoire
-                Instantiate(
-                    flowerType.flower.flowerPrefab,
-                    transform.position + position,
-                    GetRandomAngle(25),
-                    this.transform
-                );
-            }
-        }
-    }
 
     public void CleanBouquet()
     {
@@ -99,27 +94,15 @@ public class BouquetGenerator : MonoBehaviour
 			string flowersData = System.IO.File.ReadAllText(path);
 			listFlowers = JsonUtility.FromJson<FlowerDataList>(flowersData);
 			flowers = listFlowers.flowers;
-			GenerateBouqet();
+			GenerateBouquet();
 		}
 		catch
 		{
             flowers = new List<FlowerData>();
-			GenerateBouqet();
+			GenerateBouquet();
 		}
 	}
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            flowers[0].quantity += 1;
-            GenerateBouqet();
-        }
-    }
 }
-
-
-
 
 [System.Serializable]
 public class FlowerData
