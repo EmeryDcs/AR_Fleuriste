@@ -47,7 +47,7 @@ public class AR_SwitchVase : MonoBehaviour
 			}
 		}
 
-		GetComponent<AR_SaveBouquet>().SaveBouquet();
+		GetComponent<AR_SaveBouquet>().SaveVase();
 	}
 
 	void ChangerVaseDroite()
@@ -65,7 +65,7 @@ public class AR_SwitchVase : MonoBehaviour
 			}
 		}
 
-		GetComponent<AR_SaveBouquet>().SaveBouquet();
+		GetComponent<AR_SaveBouquet>().SaveVase();
 	}
 	public int GetI()
 	{

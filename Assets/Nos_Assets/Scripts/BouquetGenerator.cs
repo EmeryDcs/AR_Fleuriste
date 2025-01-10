@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class BouquetGenerator : MonoBehaviour
@@ -9,7 +10,7 @@ public class BouquetGenerator : MonoBehaviour
     public void GenerateBouqet()
     {
         CleanBouquet();
-        foreach (FlowerData flowerType in flowers)
+		foreach (FlowerData flowerType in flowers)
         {
             for (int i = 0; i < flowerType.quantity; i++)
             {
@@ -26,7 +27,11 @@ public class BouquetGenerator : MonoBehaviour
                 Instantiate(flowerType.flower.flowerPrefab, transform.position + GetRandomOffset(0.01f), GetRandomAngle(40), this.transform);
             }
         }
-    }
+
+		//Save bouquet
+		AR_SaveBouquet saveBouquet = FindAnyObjectByType<AR_SaveBouquet>();
+		saveBouquet.SaveFlowers(flowers);
+	}
 
     public void CleanBouquet()
     {
@@ -51,10 +56,28 @@ public class BouquetGenerator : MonoBehaviour
         return offset;
     }
 
-    private void Start()
-    {
-        GenerateBouqet();
-    }
+    private void Awake()
+	{
+		string path = Application.persistentDataPath + "/flowers.json";
+		try
+		{
+			string flowersData = System.IO.File.ReadAllText(path);
+			flowers = JsonUtility.FromJson<List<FlowerData>>(flowersData);
+            foreach (FlowerData flower in flowers)
+			{
+				Debug.Log(flower.flower.name + " : " + flower.quantity);
+			}
+			GenerateBouqet();
+		}
+		catch
+		{
+			Debug.Log("Les fleurs n'ont jamais été sauvegardées");
+            flowers = new List<FlowerData>();
+			GenerateBouqet();
+		}
+
+		Debug.Log("Fleurs : " + flowers);
+	}
 
     private void Update()
     {
