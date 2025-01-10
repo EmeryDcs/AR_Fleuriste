@@ -5,7 +5,8 @@ using UnityEngine;
 public class BouquetGenerator : MonoBehaviour
 {
     public List<FlowerData> flowers = new List<FlowerData>();
-    int angle;
+    public FlowerDataList listFlowers;
+	int angle;
 
     public void GenerateBouqet()
     {
@@ -30,7 +31,8 @@ public class BouquetGenerator : MonoBehaviour
 
 		//Save bouquet
 		AR_SaveBouquet saveBouquet = FindAnyObjectByType<AR_SaveBouquet>();
-		saveBouquet.SaveFlowers(flowers);
+        listFlowers.flowers = flowers;
+		saveBouquet.SaveFlowers(listFlowers);
 	}
 
     public void CleanBouquet()
@@ -62,21 +64,15 @@ public class BouquetGenerator : MonoBehaviour
 		try
 		{
 			string flowersData = System.IO.File.ReadAllText(path);
-			flowers = JsonUtility.FromJson<List<FlowerData>>(flowersData);
-            foreach (FlowerData flower in flowers)
-			{
-				Debug.Log(flower.flower.name + " : " + flower.quantity);
-			}
+			listFlowers = JsonUtility.FromJson<FlowerDataList>(flowersData);
+			flowers = listFlowers.flowers;
 			GenerateBouqet();
 		}
 		catch
 		{
-			Debug.Log("Les fleurs n'ont jamais été sauvegardées");
             flowers = new List<FlowerData>();
 			GenerateBouqet();
 		}
-
-		Debug.Log("Fleurs : " + flowers);
 	}
 
     private void Update()
@@ -101,4 +97,15 @@ public class FlowerData
         this.flower = flower;
         this.quantity = quantity;
     }
+}
+
+[System.Serializable]
+public class FlowerDataList
+{
+	public List<FlowerData> flowers;
+
+    public FlowerDataList(List<FlowerData> flowers)
+	{
+		this.flowers = flowers;
+	}
 }

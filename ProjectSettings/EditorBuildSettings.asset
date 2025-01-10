@@ -179,9 +179,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Nos_Assets/ImageTrackingWithMultiplePrefabs/ImageTrackingWithMultiplePrefabs.unity
     guid: 6559e0e380e9bd541a41934bfc77e05c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Nos_Assets/PlaneDetectionMode/PlaneDetectionMode.unity
     guid: b0b5ccf0e70110f4cb08b0ac4175558c
+  - enabled: 1
+    path: Assets/Nos_Assets/Scenes/Fleuriste.unity
+    guid: 245f9fc1c5ff7fd40b34910acd62c89f
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: c52d3bb36b4c86f47af54ab9c7a02589,
       type: 2}

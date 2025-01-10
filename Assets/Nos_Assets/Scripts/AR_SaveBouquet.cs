@@ -18,23 +18,10 @@ public class AR_SaveBouquet : MonoBehaviour
 		Debug.Log("Vase saved to " + path);
 	}
 
-	public void SaveFlowers(List<FlowerData> flowers)
+	public void SaveFlowers(FlowerDataList listFlowers)
 	{
-		string strFlower = "";
-
-		foreach (FlowerData flower in flowers)
-		{
-			strFlower += flower.ToString();
-		}
-		Debug.Log(strFlower);
-
 		//Conversion de la liste flowers en string JSON
-		string flowersToData = "";
-		foreach (FlowerData flower in flowers)
-		{
-			flowersToData += JsonUtility.ToJson(flower);
-		}
-		Debug.Log("Flowers in JSON : " + flowersToData);
+		string flowersToData = JsonUtility.ToJson(listFlowers);
 
 		//Sauvegarde du bouquet
 		string path = Application.persistentDataPath + "/flowers.json";
