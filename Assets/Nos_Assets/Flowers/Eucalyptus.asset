@@ -15,4 +15,13 @@ MonoBehaviour:
   prefabName: Eucalyptus
   flowerPrefab: {fileID: 919132149155446097, guid: c18557cb983da0040af9bdadd35f740e,
     type: 3}
-  description: 
+  description: "L\u2019eucalyptus est un arbre sacr\xE9 pour les autochtones. Pour
+    eux, il repr\xE9sente la division des enfers, de la Terre et du ciel. On pr\xEAte
+    \xE9galement \xE0 la feuille d\u2019eucalyptus un effet purifiant : l\u2019\xE9nergie
+    n\xE9gative dispara\xEEt \xE0 l\u2019endroit o\xF9 vous br\xFBlez une feuille
+    d\u2019eucalyptus.  Certains eucalyptus contiennent m\xEAme de l\u2019or. Les
+    racines extraient le m\xE9tal pr\xE9cieux du sol, mais comme il est toxique pour
+    l\u2019arbre, il essaie de s\u2019en d\xE9barrasser \xE0 travers ses feuilles.
+    Les scientifiques n\u2019ont trouv\xE9 que de minuscules quantit\xE9s d\u2019or
+    dans la plante, mais la pr\xE9sence du m\xE9tal indique clairement qu\u2019il
+    y a de l\u2019or dans le sol o\xF9 il pousse."

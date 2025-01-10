@@ -15,4 +15,8 @@ MonoBehaviour:
   prefabName: Gypsophile
   flowerPrefab: {fileID: 919132149155446097, guid: 5417e7116f60cff4fb9e71767a75946f,
     type: 3}
-  description: 
+  description: "Le gypsophile, souvent appel\xE9 baby's breath (souffle de b\xE9b\xE9)
+    en anglais, a une symbolique particuli\xE8re dans le langage des fleurs. Il est
+    g\xE9n\xE9ralement associ\xE9 \xE0 la puret\xE9, l\u2019innocence et l\u2019amour
+    \xE9ternel. Il peut \xE9galement symboliser une nouvelle naissance ou un nouveau
+    d\xE9part, mais aussi le soutien in\xE9branlable et la fiabilit\xE9."

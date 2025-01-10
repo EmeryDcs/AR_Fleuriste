@@ -15,4 +15,8 @@ MonoBehaviour:
   prefabName: Nigelle
   flowerPrefab: {fileID: 919132149155446097, guid: ff22eb31734918447b6f67f7ceb2e4d5,
     type: 3}
-  description: 
+  description: "Ce sont des plantes herbac\xE9es annuelles au feuillage finement
+    d\xE9coup\xE9. Il en existe une vingtaine d'esp\xE8ces, toutes originaires d'Eurasie.
+    Certaines \xE9taient autrefois consomm\xE9es, en graines ou comme \xE9pices,
+    et le sont encore dans certains pays d'Orient, ou cultiv\xE9es comme esp\xE8ces
+    ornementales."

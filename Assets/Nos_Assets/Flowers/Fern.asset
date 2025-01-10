@@ -15,4 +15,9 @@ MonoBehaviour:
   prefabName: Fern
   flowerPrefab: {fileID: 919132149155446097, guid: 61d54ec5892dfd64b9971376ec437026,
     type: 3}
-  description: 
+  description: "La fleur de foug\xE8re est une fleur l\xE9gendaire qui appara\xEEt
+    dans le folklore et les mythologies des pays de l'Europe de l'Est, dans la mythologie
+    slave et dans celle des pays baltes. Dot\xE9e de propri\xE9t\xE9s magiques bienfaisantes,
+    elle passe pour ne pousser qu'une fois par an, la nuit du solstice d'\xE9t\xE9.
+    La fleur est purement imaginaire puisque les foug\xE8res n'en produisent pas,
+    mais sa l\xE9gende a inspir\xE9 artistes et \xE9crivains jusqu'\xE0 nos jours."

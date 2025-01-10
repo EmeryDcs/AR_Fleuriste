@@ -15,4 +15,12 @@ MonoBehaviour:
   prefabName: Astrante
   flowerPrefab: {fileID: 919132149155446097, guid: 9298a87fd843987429404076095bb485,
     type: 3}
-  description: 
+  description: "L\u2019astrance, souvent consid\xE9r\xE9e comme la plus belle des
+    fleurs de mi-ombre, illumine les jardins tout au long de l\u2019\xE9t\xE9. Facile
+    \xE0 cultiver, elle s'adapte \xE0 tous types de sols, \xE0 l'exception des p\xE9riodes
+    de s\xE9cheresse estivale. Bien qu'elle soit assez difficile \xE0 semer, pr\xE9f\xE9rant
+    les plants, elle est ais\xE9e \xE0 diviser. Merveilleuse en association avec
+    des vivaces, des gramin\xE9es et des arbustes, l\u2019astrance est embl\xE9matique
+    des jardins anglais et constitue une ic\xF4ne pour de nombreux paysagistes. En
+    somme, l\u2019astrance est notre fleur pr\xE9f\xE9r\xE9e, apportant une touche
+    de gr\xE2ce et d'\xE9l\xE9gance \xE0 tout espace vert."
