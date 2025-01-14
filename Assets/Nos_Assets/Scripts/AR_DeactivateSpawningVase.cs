@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class AR_DeactivateSpawningVase : MonoBehaviour
 {
     public GameObject xROrigin;
-	public GameObject uIFlowers;
 
 	private void Start()
 	{
@@ -14,8 +13,10 @@ public class AR_DeactivateSpawningVase : MonoBehaviour
 
 	private void DeactivateSpawningVase()
 	{
+		GameObject vaseSelector = GameObject.FindGameObjectWithTag("Vase Selector");
+		vaseSelector.SetActive(false);
+
 		xROrigin.transform.GetComponent<AR_TapToPlace>().isPlacementValidated = true;
 		transform.parent.gameObject.SetActive(false);
-		uIFlowers.SetActive(true);
 	}
 }
