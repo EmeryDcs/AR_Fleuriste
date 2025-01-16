@@ -90,12 +90,56 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void OnTrackedImagesChanged(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
         {
+            // Handle added tracked images
             foreach (var trackedImage in eventArgs.added)
             {
                 // Give the initial image a reasonable default scale
                 var minLocalScalar = Mathf.Min(trackedImage.size.x, trackedImage.size.y) / 2;
                 trackedImage.transform.localScale = new Vector3(minLocalScalar, minLocalScalar, minLocalScalar);
                 AssignPrefab(trackedImage);
+            }
+
+            // Handle updated tracked images
+            foreach (var trackedImage in eventArgs.updated)
+            {
+                // Check tracking state
+                if (trackedImage.trackingState == TrackingState.Tracking)
+                {
+                    // Update the scale
+                    var minLocalScalar = Mathf.Min(trackedImage.size.x, trackedImage.size.y) / 2;
+                    trackedImage.transform.localScale = new Vector3(minLocalScalar, minLocalScalar, minLocalScalar);
+
+                    // Handle tracking found/restored
+                    if (!m_Instantiated.ContainsKey(trackedImage.referenceImage.guid))
+                    {
+                        AssignPrefab(trackedImage);
+                    }
+                    else
+                    {
+                        // Show the prefab
+                        m_Instantiated[trackedImage.referenceImage.guid].SetActive(true);
+                    }
+                }
+                else
+                {
+                    // Handle tracking lost (Limited or None state)
+                    if (m_Instantiated.TryGetValue(trackedImage.referenceImage.guid, out var instantiatedPrefab))
+                    {
+                        // Just hide the prefab instead of destroying it
+                        instantiatedPrefab.SetActive(false);
+                    }
+                }
+            }
+
+            // Handle removed tracked images
+            foreach (var pair in eventArgs.removed)
+            {
+                var trackedImage = pair.Value;
+                if (m_Instantiated.TryGetValue(trackedImage.referenceImage.guid, out var instantiatedPrefab))
+                {
+                    Destroy(instantiatedPrefab);
+                    m_Instantiated.Remove(trackedImage.referenceImage.guid);
+                }
             }
         }
 
@@ -196,7 +240,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                         var tempDictionary = new Dictionary<Guid, GameObject>();
                         foreach (var image in library)
                         {
-                            var prefab = (GameObject) EditorGUILayout.ObjectField(image.name, behaviour.m_PrefabsDictionary[image.guid], typeof(GameObject), false);
+                            var prefab = (GameObject)EditorGUILayout.ObjectField(image.name, behaviour.m_PrefabsDictionary[image.guid], typeof(GameObject), false);
                             tempDictionary.Add(image.guid, prefab);
                         }
 
