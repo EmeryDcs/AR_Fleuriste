@@ -7,12 +7,13 @@ public class BouquetGenerator : MonoBehaviour
 {
     public List<FlowerData> flowers = new List<FlowerData>();
     public FlowerDataList listFlowers;
+    public float totalPrice; 
 	int angle;
 
     [Header("Bouquet Settings")]
     public float baseRadius = 0.1f;  // Rayon de base pour le placement des fleurs
     public float heightVariance = 0.05f; // Variation verticale pour simuler un effet de bouquet
-    public float randomOffset = 0.02f; // Offset aléatoire pour chaque fleur
+    public float randomOffset = 0.02f; // Offset alï¿½atoire pour chaque fleur
 
     public void GenerateBouquet()
     {
@@ -22,20 +23,20 @@ public class BouquetGenerator : MonoBehaviour
         {
             if (flowerType.quantity <= 0) continue;
 
-            // Calcule le rayon spécifique pour ce type de fleur
+            // Calcule le rayon spï¿½cifique pour ce type de fleur
             float flowerRadius = baseRadius + flowerType.quantity * 0.0001f;
 
             for (int i = 0; i < flowerType.quantity; i++)
             {
                 // Calcule une position circulaire autour du point central
-                float angle = (360f / flowerType.quantity) * i; // Divise uniformément les fleurs en cercle
+                float angle = (360f / flowerType.quantity) * i; // Divise uniformï¿½ment les fleurs en cercle
                 Vector3 position = GetPositionOnCircle(angle, flowerRadius);
 
-                // Applique une variation aléatoire à la hauteur et à la position
+                // Applique une variation alï¿½atoire ï¿½ la hauteur et ï¿½ la position
                 position.y += Random.Range(-heightVariance, heightVariance);
                 position += GetRandomOffset(randomOffset);
 
-				// Instancie la fleur avec une rotation aléatoire
+				// Instancie la fleur avec une rotation alï¿½atoire
 				Instantiate(
 					flowerType.flower.flowerPrefab,
 					transform.position + position,
@@ -45,11 +46,28 @@ public class BouquetGenerator : MonoBehaviour
 			}
 		}
 
+        CalculateTotalPrice();
+
 		//Save bouquet
 		AR_SaveBouquet saveBouquet = FindAnyObjectByType<AR_SaveBouquet>();
 		listFlowers.flowers = flowers;
 		saveBouquet.SaveFlowers(listFlowers);
 	}
+
+    private void CalculateTotalPrice()
+    {
+        totalPrice = 0f;
+
+        foreach (FlowerData flowerType in flowers)
+        {
+            if (flowerType.flower != null)
+            {
+                totalPrice += flowerType.flower.price * flowerType.quantity;
+            }
+        }
+
+        Debug.Log($"Prix total du bouquet : {totalPrice} â‚¬");
+    }
 
     public void CleanBouquet()
     {

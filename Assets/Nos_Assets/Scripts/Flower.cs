@@ -7,4 +7,5 @@ public class FlowerScriptableObject : ScriptableObject
     public GameObject flowerPrefab;
 
     public string description;
+    public float price;
 }

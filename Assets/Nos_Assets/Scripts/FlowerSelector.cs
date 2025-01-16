@@ -16,7 +16,7 @@ public class FlowerSelector : MonoBehaviour
     {
         if (flowerToDisplay != null)
         {
-            // Instancie l'aperçu de la fleur dans l'interface
+            // Instancie l'aperï¿½u de la fleur dans l'interface
             Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
         }
             // Recherche le BouquetGenerator
@@ -24,24 +24,24 @@ public class FlowerSelector : MonoBehaviour
 
         if (bouquet == null)
         {
-            Debug.LogError("BouquetGenerator non trouvé.");
+            Debug.LogError("BouquetGenerator non trouvï¿½.");
             return;
         }
 
-        // Vérifie si la fleur en question existe déjà dans le bouquet
+        // Vï¿½rifie si la fleur en question existe dï¿½jï¿½ dans le bouquet
         if (flowerToDisplay != null)
         {
             FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
 
             if (existingFlower != null)
             {
-                // Met à jour la quantité existante
+                // Met ï¿½ jour la quantitï¿½ existante
                 quantity = existingFlower.quantity;
             }
 
         }
 
-        // Met à jour l'interface pour refléter la quantité actuelle
+        // Met ï¿½ jour l'interface pour reflï¿½ter la quantitï¿½ actuelle
         quantityText.text = quantity.ToString();
     }
 
@@ -72,17 +72,17 @@ public class FlowerSelector : MonoBehaviour
 
     public void ValidateSelection()
     {
-        // Vérifie si le bouquet existe
+        // Vï¿½rifie si le bouquet existe
         if (bouquet == null)
         {
-            Debug.LogError("BouquetGenerator non trouvé.");
+            Debug.LogError("BouquetGenerator non trouvï¿½.");
             return;
         }
 
-        // Vérifie si une fleur est sélectionnée
+        // Vï¿½rifie si une fleur est sï¿½lectionnï¿½e
         if (flowerToDisplay == null)
         {
-            Debug.LogWarning("Aucune fleur sélectionnée.");
+            Debug.LogWarning("Aucune fleur sï¿½lectionnï¿½e.");
             return;
         }
 
@@ -91,7 +91,7 @@ public class FlowerSelector : MonoBehaviour
 
         if (quantity == 0)
         {
-            // Si la quantité est 0, supprime la fleur du bouquet
+            // Si la quantitï¿½ est 0, supprime la fleur du bouquet
             if (existingFlower != null)
             {
                 bouquet.flowers.Remove(existingFlower);
@@ -99,7 +99,7 @@ public class FlowerSelector : MonoBehaviour
         }
         else
         {
-            // Si la fleur existe déjà, met à jour la quantité
+            // Si la fleur existe dï¿½jï¿½, met ï¿½ jour la quantitï¿½
             if (existingFlower != null)
             {
                 existingFlower.quantity = quantity;
