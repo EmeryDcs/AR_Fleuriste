@@ -14,7 +14,12 @@ public class FlowerSelector : MonoBehaviour
 
     private void Awake()
     {
-        // Recherche le BouquetGenerator
+        if (flowerToDisplay != null)
+        {
+            // Instancie l'aperçu de la fleur dans l'interface
+            Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
+        }
+            // Recherche le BouquetGenerator
         bouquet = FindAnyObjectByType<BouquetGenerator>();
 
         if (bouquet == null)
@@ -34,8 +39,6 @@ public class FlowerSelector : MonoBehaviour
                 quantity = existingFlower.quantity;
             }
 
-            // Instancie l'aperçu de la fleur dans l'interface
-            Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
         }
 
         // Met à jour l'interface pour refléter la quantité actuelle
