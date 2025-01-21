@@ -6,95 +6,109 @@ using UnityEngine.UI;
 
 public class AR_SwitchVase : MonoBehaviour
 {
-	public List<GameObject> prefabsVase = new List<GameObject>();
-	public Button boutonGauche;
-	public Button boutonDroite;
-		
-	private int i = 0;
+    public List<GameObject> prefabsVase = new List<GameObject>();
+    public Button boutonGauche;
+    public Button boutonDroite;
 
-	void Awake()
-	{
-		//Listener sur les boutons
-		boutonGauche.onClick.AddListener(ChangerVaseGauche);
-		boutonDroite.onClick.AddListener(ChangerVaseDroite);
+    private int i = 0;
 
-		//Chargement du vase
-		string path = Application.persistentDataPath + "/vase.json";
-		try
-		{
-			string iData = System.IO.File.ReadAllText(path);
+    void Awake()
+    {
+        //Listener sur les boutons
+        boutonGauche.onClick.AddListener(ChangerVaseGauche);
+        boutonDroite.onClick.AddListener(ChangerVaseDroite);
 
-			SetI(JsonUtility.FromJson<IntWrapper>(iData));
-		}
-		catch
-		{
-			Debug.Log("Le vase n'a jamais été sauvegardé");
-		}
-	}
+        //Chargement du vase
+        string path = Application.persistentDataPath + "/vase.json";
+        try
+        {
+            string iData = System.IO.File.ReadAllText(path);
 
-	void ChangerVaseGauche()
-	{
-		if (i > 0)
-		{
-			i--;
-			for (int j = 0; j < prefabsVase.Count; j++)
-			{
-				prefabsVase[j].SetActive(false);
-				if (j == i)
-				{
-					prefabsVase[j].SetActive(true);
-				}
-			}
-		}
+            SetI(JsonUtility.FromJson<IntWrapper>(iData));
+        }
+        catch
+        {
+            Debug.Log("Le vase n'a jamais été sauvegardé");
+        }
+    }
 
-		GetComponent<AR_SaveBouquet>().SaveVase();
-	}
+    void ChangerVaseGauche()
+    {
+        i--; // Décrémenter l'index du vase
 
-	void ChangerVaseDroite()
-	{
-		if (i < prefabsVase.Count-1)
-		{
-			i++;
-			for (int j = 0; j < prefabsVase.Count; j++)
-			{
-				prefabsVase[j].SetActive(false);
-				if (j == i)
-				{
-					prefabsVase[j].SetActive(true);
-				}
-			}
-		}
+        // Si on est au début de la liste, on revient à la fin
+        if (i < 0)
+        {
+            i = prefabsVase.Count - 1;
+        }
 
-		GetComponent<AR_SaveBouquet>().SaveVase();
-	}
-	public int GetI()
-	{
-		return i;
-	}
+        // Afficher le vase sélectionné et désactiver les autres
+        for (int j = 0; j < prefabsVase.Count; j++)
+        {
+            prefabsVase[j].SetActive(false);
+            if (j == i)
+            {
+                prefabsVase[j].SetActive(true);
+            }
+        }
 
-	//Cette classe est nécessaire pour convertir un int en un objet convertissable en JSON.
-	[System.Serializable]
-	public class IntWrapper
-	{
-		public int value;
+        // Sauvegarde du vase sélectionné
+        GetComponent<AR_SaveBouquet>().SaveVase();
+    }
 
-		public IntWrapper(int value)
-		{
-			this.value = value;
-		}
-	}
+    void ChangerVaseDroite()
+    {
+        i++; // Incrémenter l'index du vase
 
-	public void SetI(IntWrapper intWrapped)
-	{
-		i = intWrapped.value;
+        // Si on est à la fin de la liste, on revient au début
+        if (i >= prefabsVase.Count)
+        {
+            i = 0;
+        }
 
-		for (int j = 0; j < prefabsVase.Count; j++)
-		{
-			prefabsVase[j].SetActive(false);
-			if (j == i)
-			{
-				prefabsVase[j].SetActive(true);
-			}
-		}
-	}
+        // Afficher le vase sélectionné et désactiver les autres
+        for (int j = 0; j < prefabsVase.Count; j++)
+        {
+            prefabsVase[j].SetActive(false);
+            if (j == i)
+            {
+                prefabsVase[j].SetActive(true);
+            }
+        }
+
+        // Sauvegarde du vase sélectionné
+        GetComponent<AR_SaveBouquet>().SaveVase();
+    }
+
+    public int GetI()
+    {
+        return i;
+    }
+
+    // Cette classe est nécessaire pour convertir un int en un objet convertissable en JSON.
+    [System.Serializable]
+    public class IntWrapper
+    {
+        public int value;
+
+        public IntWrapper(int value)
+        {
+            this.value = value;
+        }
+    }
+
+    public void SetI(IntWrapper intWrapped)
+    {
+        i = intWrapped.value;
+
+        // Afficher le vase sélectionné et désactiver les autres
+        for (int j = 0; j < prefabsVase.Count; j++)
+        {
+            prefabsVase[j].SetActive(false);
+            if (j == i)
+            {
+                prefabsVase[j].SetActive(true);
+            }
+        }
+    }
 }
