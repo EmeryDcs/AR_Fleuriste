@@ -61,7 +61,23 @@ PrefabInstance:
     - target: {fileID: 4846476991923102211, guid: 91418c2602f972842adc5794eaa48e53,
         type: 3}
       propertyPath: m_Name
-      value: PF_Flower_Selector
+      value: PF_Flower_Selector_Astr
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 09d36abc24425e44abbf989eb997a17e,
+        type: 2}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: FlowerScriptableObject, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,15 +5,15 @@ using TMPro;
 public class AR_BoutonInfo : MonoBehaviour
 {
     public FlowerScriptableObject flowerData;
-    public TMP_Text uIInfoText;
 
-    public void DisplayInfo()
+    public void DisplayInfo(FlowerScriptableObject flowerData)
     {
-        GameObject uIInfo = GameObject.Find("UI Info Fleur");
+        AR_DisplayInfos uIInfo = GameObject.FindAnyObjectByType<AR_DisplayInfos>();
 
-        uIInfo.transform.GetChild(0).gameObject.SetActive(true);
-        uIInfo.transform.GetChild(1).gameObject.SetActive(true);
-
-        uIInfoText.text = flowerData.description;
+        if (uIInfo != null && flowerData != null)
+        {
+            uIInfo.DisplayIndividualFlowerInfo(flowerData);
+        }
     }
+
 }

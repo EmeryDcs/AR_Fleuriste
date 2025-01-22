@@ -75,6 +75,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Flower_Selector_Ros
       objectReference: {fileID: 0}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 90f66fbb5bf380d48aa9b140432ff0b3,
+        type: 2}
+    - target: {fileID: 6887160881474601789, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: FlowerScriptableObject, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955025246168703497, guid: 91418c2602f972842adc5794eaa48e53,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
