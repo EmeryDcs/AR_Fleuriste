@@ -963,6 +963,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapToPlace: {fileID: 1428192375}
   UIPlacement: {fileID: 266068301}
+  xROrigin: {fileID: 1428192363}
+  materialMesh: {fileID: 2100000, guid: a47d8d63f2faad24b8b9736d37b2b8c4, type: 2}
+  materialLine: {fileID: 2100000, guid: a47d8d63f2faad24b8b9736d37b2b8c4, type: 2}
 --- !u!4 &362903501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3516052345843199201, guid: f40318f84d12bcb4fa481aced4c72647,
@@ -1406,18 +1409,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 414995375}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 691197801}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1942,6 +1933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xROrigin: {fileID: 1428192363}
+  uIBouquetAction: {fileID: 1712719829}
 --- !u!114 &858784230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2426,7 +2418,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50.9
+  m_fontSize: 50.55
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4282,6 +4274,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tapToPlace: {fileID: 1428192375}
   UIPlacement: {fileID: 266068301}
+  xROrigin: {fileID: 0}
+  materialMesh: {fileID: 0}
+  materialLine: {fileID: 0}
 --- !u!114 &1731018290
 MonoBehaviour:
   m_ObjectHideFlags: 0
