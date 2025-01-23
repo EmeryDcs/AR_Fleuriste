@@ -15,6 +15,7 @@ public class AR_DeactivateBorderPlaneDetected : MonoBehaviour
         foreach (ARPlane plane in gameObjects)
         {
             //on remplace la ligne noire par un matériau transparent
+            plane.gameObject.GetComponent<MeshRenderer>().material = materialTransparent;
             plane.gameObject.GetComponent<LineRenderer>().material = materialTransparent;
             xROrigin.GetComponent<ARPlaneManager>().enabled = false;
         }

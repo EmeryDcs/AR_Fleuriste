@@ -21,10 +21,7 @@ public class MainMenu : MonoBehaviour
         bouquetExists = File.Exists(flowersSavePath);
     }
 
-    /// <summary>
-    /// Vérifie si un bouquet est enregistré, puis charge une scène de manière asynchrone.
-    /// </summary>
-    /// <param name="sceneName">Nom de la scène à charger.</param>
+
     public void LoadSceneAsync(string sceneName)
     {
         if (bouquetExists)
@@ -41,10 +38,7 @@ public class MainMenu : MonoBehaviour
         StartLoadingScene(sceneName);
     }
 
-    /// <summary>
-    /// Appelée lorsque l'utilisateur choisit de continuer le bouquet existant.
-    /// </summary>
-    /// <param name="sceneName">Nom de la scène à charger.</param>
+
     public void ContinueBouquet(string sceneName)
     {
         // Fermer le menu de choix (si affiché)
@@ -57,10 +51,7 @@ public class MainMenu : MonoBehaviour
         StartLoadingScene(sceneName);
     }
 
-    /// <summary>
-    /// Appelée lorsque l'utilisateur choisit de recommencer un nouveau bouquet.
-    /// </summary>
-    /// <param name="sceneName">Nom de la scène à charger.</param>
+
     public void RestartBouquet(string sceneName)
     {
         // Supprimer le fichier de sauvegarde existant
@@ -80,10 +71,6 @@ public class MainMenu : MonoBehaviour
         StartLoadingScene(sceneName);
     }
 
-    /// <summary>
-    /// Lancement du chargement asynchrone.
-    /// </summary>
-    /// <param name="sceneName">Nom de la scène à charger.</param>
     private void StartLoadingScene(string sceneName)
     {
         if (loadingScreen != null)
@@ -94,10 +81,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    /// <summary>
-    /// Coroutine pour charger la scène en asynchrone.
-    /// </summary>
-    /// <param name="sceneName">Nom de la scène à charger.</param>
+
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
