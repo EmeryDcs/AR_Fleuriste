@@ -31,8 +31,6 @@ public class AR_ResetBouquet : MonoBehaviour
 			//plane.gameObject.GetComponent<LineRenderer>().material = materialLine;
 		}
 
-		xROrigin.GetComponent<ARPlaneManager>().enabled = true;
-
 		//On réinitialise le bouquet
 		bouquet.CleanBouquet();
 		bouquet.flowers.Clear();
