@@ -1931,7 +1931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bouquetir-AR
+  m_text: Bouqueti-AR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b8c1fce402b79fc4eaf8bbf8917b7dd9, type: 2}
   m_sharedMaterial: {fileID: -5532276424671498289, guid: b8c1fce402b79fc4eaf8bbf8917b7dd9,
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Recmmencer
+  m_text: 'Recommencer
 
 '
   m_isRightToLeft: 0
@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.55
+  m_fontSize: 67.39
   m_fontSizeBase: 15.2
   m_fontWeight: 400
   m_enableAutoSizing: 1

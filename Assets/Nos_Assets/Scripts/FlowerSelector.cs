@@ -12,86 +12,116 @@ public class FlowerSelector : MonoBehaviour
     private BouquetGenerator bouquet;
     public TMP_Text quantityText;
 
+    private float searchDelay = 0.5f; // Intervalle pour la recherche du bouquet
+    private float lastSearchTime;    // Dernier moment où une recherche a été effectuée
+
     private void Awake()
+    {
+        Init();
+    }
+
+    private void Init()
     {
         if (flowerToDisplay != null)
         {
-            // Instancie l'aper�u de la fleur dans l'interface
-            Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
+            UpdateFlowerPreview();
         }
-            // Recherche le BouquetGenerator
-        bouquet = FindAnyObjectByType<BouquetGenerator>();
+
+        SearchBouquet();
 
         if (bouquet == null)
         {
-            Debug.LogError("BouquetGenerator non trouv�.");
+            Debug.LogWarning("BouquetGenerator non trouvé lors de l'initialisation.");
             return;
         }
 
-        // V�rifie si la fleur en question existe d�j� dans le bouquet
-        if (flowerToDisplay != null)
+        UpdateQuantityFromBouquet();
+        UpdateQuantityDisplay();
+    }
+
+    private void Update()
+    {
+        if (bouquet == null && Time.time - lastSearchTime > searchDelay)
         {
-            FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
-
-            if (existingFlower != null)
+            SearchBouquet();
+            if (bouquet != null)
             {
-                // Met � jour la quantit� existante
-                quantity = existingFlower.quantity;
+                Init();
             }
+        }
+    }
 
+    private void SearchBouquet()
+    {
+        bouquet = FindAnyObjectByType<BouquetGenerator>();
+        lastSearchTime = Time.time;
+    }
+
+    private void UpdateFlowerPreview()
+    {
+        // Détruit les anciens prefabs pour éviter les doublons
+        foreach (Transform child in flowerPos)
+        {
+            Destroy(child.gameObject);
         }
 
-        // Met � jour l'interface pour refl�ter la quantit� actuelle
+        // Instancie le nouveau prefab
+        Instantiate(flowerToDisplay.flowerPrefab, flowerPos);
+    }
+
+    private void UpdateQuantityFromBouquet()
+    {
+        if (bouquet != null && flowerToDisplay != null)
+        {
+            FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
+            quantity = existingFlower != null ? existingFlower.quantity : 0;
+        }
+    }
+
+    private void UpdateQuantityDisplay()
+    {
         quantityText.text = quantity.ToString();
     }
 
-
     public void IncreaseQuantity()
     {
-        quantity += 1;
-        quantityText.text = quantity.ToString();
+        quantity++;
+        UpdateQuantityDisplay();
         ValidateSelection();
-
     }
 
     public void DecreaseQuantity()
     {
-        quantity -= 1;
-        if(quantity < 0)
-            quantity=0;
-        quantityText.text = quantity.ToString();
+        quantity = Mathf.Max(0, quantity - 1);
+        UpdateQuantityDisplay();
         ValidateSelection();
     }
 
     public void ResetQuantity()
     {
         quantity = 0;
-        quantityText.text = quantity.ToString();
+        UpdateQuantityDisplay();
         ValidateSelection();
     }
 
     public void ValidateSelection()
     {
-        // V�rifie si le bouquet existe
         if (bouquet == null)
         {
-            Debug.LogError("BouquetGenerator non trouv�.");
+            Debug.LogError("BouquetGenerator non trouvé.");
             return;
         }
 
-        // V�rifie si une fleur est s�lectionn�e
         if (flowerToDisplay == null)
         {
-            Debug.LogWarning("Aucune fleur s�lectionn�e.");
+            Debug.LogWarning("Aucune fleur sélectionnée.");
             return;
         }
 
-        // Cherche une fleur existante dans le bouquet
         FlowerData existingFlower = bouquet.flowers.Find(f => f.flower == flowerToDisplay);
 
         if (quantity == 0)
         {
-            // Si la quantit� est 0, supprime la fleur du bouquet
             if (existingFlower != null)
             {
                 bouquet.flowers.Remove(existingFlower);
@@ -99,19 +129,16 @@ public class FlowerSelector : MonoBehaviour
         }
         else
         {
-            // Si la fleur existe d�j�, met � jour la quantit�
             if (existingFlower != null)
             {
                 existingFlower.quantity = quantity;
             }
             else
             {
-                // Sinon, ajoute une nouvelle fleur
                 bouquet.flowers.Add(new FlowerData(flowerToDisplay, quantity));
             }
         }
 
-        // Recharge le bouquet
         bouquet.GenerateBouquet();
     }
 }
