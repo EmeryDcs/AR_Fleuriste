@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.IO; // Pour manipuler les fichiers locaux
+using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,8 +9,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Slider progressBar; // Barre de progression (optionnel)
     [SerializeField] private GameObject choiceMenu; // Menu pour choisir "Continuer" ou "Recommencer"
 
-    private string flowersSavePath;
-    private bool bouquetExists = false;
+    private string selectedScene; // Stocke la scène actuellement sélectionnée
+    private string flowersSavePath; // Chemin vers le fichier de sauvegarde du bouquet
+    private bool bouquetExists = false; // Indique si un bouquet existe déjà
 
     private void Start()
     {
@@ -21,9 +22,11 @@ public class MainMenu : MonoBehaviour
         bouquetExists = File.Exists(flowersSavePath);
     }
 
-
+    // Fonction appelée par différents boutons pour charger une scène
     public void LoadSceneAsync(string sceneName)
     {
+        selectedScene = sceneName; // Enregistrer la scène sélectionnée
+
         if (bouquetExists)
         {
             // Afficher un menu de choix si un bouquet existe
@@ -34,12 +37,12 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        // Si aucun bouquet n'existe ou si l'utilisateur décide de continuer sans choix
-        StartLoadingScene(sceneName);
+        // Si aucun bouquet n'existe, charger directement la scène
+        StartLoadingScene(selectedScene);
     }
 
-
-    public void ContinueBouquet(string sceneName)
+    // Continuer avec le bouquet existant
+    public void ContinueBouquet()
     {
         // Fermer le menu de choix (si affiché)
         if (choiceMenu != null)
@@ -47,12 +50,12 @@ public class MainMenu : MonoBehaviour
             choiceMenu.SetActive(false);
         }
 
-        // Charger la scène avec les données actuelles
-        StartLoadingScene(sceneName);
+        // Charger la scène précédemment sélectionnée
+        StartLoadingScene(selectedScene);
     }
 
-
-    public void RestartBouquet(string sceneName)
+    // Recommencer avec un nouveau bouquet
+    public void RestartBouquet()
     {
         // Supprimer le fichier de sauvegarde existant
         if (File.Exists(flowersSavePath))
@@ -67,8 +70,8 @@ public class MainMenu : MonoBehaviour
             choiceMenu.SetActive(false);
         }
 
-        // Charger la scène avec un bouquet vierge
-        StartLoadingScene(sceneName);
+        // Charger la scène précédemment sélectionnée
+        StartLoadingScene(selectedScene);
     }
 
     private void StartLoadingScene(string sceneName)
@@ -80,7 +83,6 @@ public class MainMenu : MonoBehaviour
 
         StartCoroutine(LoadSceneCoroutine(sceneName));
     }
-
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
